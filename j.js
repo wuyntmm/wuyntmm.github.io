@@ -1,15 +1,16 @@
 (function() {
   'use strict';
 
-var Defined = {
+  // 1. ЗМІНА: Використовуємо публічний проксі для обходу блокування
+  var Defined = {
     api: 'lampac',
-    // Використовуємо публічний проксі cors.lampa.mx, він працює стабільніше
-    localhost: 'https://cors.lampa.mx/https://bwa.to/', 
+    localhost: 'https://corsproxy.io/?' + encodeURIComponent('https://rc.bwa.to/'),
     apn: ''
   };
 
   var balansers_with_search;
   
+  // 2. ЦЕ ЗАЛИШАЄМО (воно потрібне для ідентифікації пристрою)
   var unic_id = Lampa.Storage.get('lampac_unic_id', '');
   if (!unic_id) {
     unic_id = Lampa.Utils.uid(8).toLowerCase();
@@ -29,8 +30,10 @@ var Defined = {
     }
   }
 
-// Важливо: тут ми просто вказуємо оригінальний хост
-var hostkey = 'bwa.to';
+  // 3. ЗМІНА: Жорстко прописуємо оригінальний хост, щоб логіка плагіна не ламалася
+  var hostkey = 'rc.bwa.to';
+
+  // --- Далі нічого не чіпаємо, залишаємо як було ---
 
 if (!window.rch_nws || !window.rch_nws[hostkey]) {
   if (!window.rch_nws) window.rch_nws = {};
@@ -1954,4 +1957,5 @@ else if (element.url) {
 
 
 })();
+
 
