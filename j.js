@@ -1,9 +1,10 @@
 (function() {
   'use strict';
 
-  var Defined = {
+var Defined = {
     api: 'lampac',
-    localhost: 'https://lampac-proxy.dgbklds.workers.dev/',
+    // Використовуємо публічний проксі cors.lampa.mx, він працює стабільніше
+    localhost: 'https://cors.lampa.mx/https://bwa.to/', 
     apn: ''
   };
 
@@ -15,20 +16,21 @@
     Lampa.Storage.set('lampac_unic_id', unic_id);
   }
   
-    function getAndroidVersion() {
-  if (Lampa.Platform.is('android')) {
-    try {
-      var current = AndroidJS.appVersion().split('-');
-      return parseInt(current.pop());
-    } catch (e) {
+  function getAndroidVersion() {
+    if (Lampa.Platform.is('android')) {
+      try {
+        var current = AndroidJS.appVersion().split('-');
+        return parseInt(current.pop());
+      } catch (e) {
+        return 0;
+      }
+    } else {
       return 0;
     }
-  } else {
-    return 0;
   }
-}
 
-var hostkey = 'lampac-proxy.dgbklds.workers.dev/';
+// Важливо: тут ми просто вказуємо оригінальний хост
+var hostkey = 'bwa.to';
 
 if (!window.rch_nws || !window.rch_nws[hostkey]) {
   if (!window.rch_nws) window.rch_nws = {};
@@ -1952,3 +1954,4 @@ else if (element.url) {
 
 
 })();
+
