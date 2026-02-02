@@ -3,7 +3,7 @@
 
   var Defined = {
     api: 'lampac',
-    localhost: 'https://wuyntmm.github.io/',
+    localhost: 'https://lampac-proxy.dgbklds.workers.dev/',
     apn: ''
   };
 
@@ -28,7 +28,7 @@
   }
 }
 
-var hostkey = 'https://wuyntmm.github.io'.replace('http://', '').replace('https://', '');
+var hostkey = 'lampac-proxy.dgbklds.workers.dev/';
 
 if (!window.rch_nws || !window.rch_nws[hostkey]) {
   if (!window.rch_nws) window.rch_nws = {};
@@ -1949,5 +1949,6 @@ else if (element.url) {
     }
   }
   if (!window.bwarch_plugin) startPlugin();
+
 
 })();
